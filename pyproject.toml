@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "eml-explore"
-version = "0.1.0"
+version = "0.1.1"
 description = "Cross-domain explorer CLI for the EML substrate."
 readme = "README.md"
 requires-python = ">=3.10"
@@ -30,7 +30,7 @@ dependencies = [
     "eml-rewrite>=0.4.0",
     "eml-discover>=0.2.0",
     "eml-graph>=0.1.0",
-    "eml-witness>=0.1.0",
+    "eml-witness>=0.2.0",
 ]
 
 [project.scripts]

@@ -79,13 +79,19 @@ def test_witness_json_output(capsys):
     out = json.loads(capsys.readouterr().out)
     assert out["input_expr"] == "exp(sin(x))"
     assert "profile" in out
-    assert out["verified_in_lean"] is False
+    # exp(sin(x)) is in the EML class — verified_in_lean True
+    # since the universality theorem was user-verified
+    # (eml-witness 0.2.0+).
+    assert out["verified_in_lean"] is True
+    assert out["lean_url"] is not None
 
 
 def test_witness_no_walk_skips_path(capsys):
     rc = main(["--json", "witness", "exp(x)/(1+exp(x))", "--no-walk"])
     assert rc == 0
     out = json.loads(capsys.readouterr().out)
+    # canonical_path serialised as a list (JSON has no tuples) but
+    # carries no entries when --no-walk is set.
     assert out["canonical_path"] == []
 
 
